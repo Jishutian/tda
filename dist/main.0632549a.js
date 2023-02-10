@@ -44858,7 +44858,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 // 导入GUI
 
 // console.log(THREE)
-// 目标： 使用缓冲几何体创建多个三角形
+// 目标： 使用纹理
 // 1.创建场景
 var scene = new THREE.Scene();
 
@@ -44868,24 +44868,13 @@ var camear = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 camear.position.set(0, 0, 10);
 // 相机添加进场景
 scene.add(camear);
-for (var i = 0; i < 50; i++) {
-  var cubeGeometry = new THREE.BufferGeometry(); // 创建缓冲几何体
-  var certices = new Float32Array(9);
-  for (var j = 0; j < 9; j++) {
-    certices[j] = Math.random() * 6 - 3;
-  }
-  cubeGeometry.setAttribute('position', new THREE.BufferAttribute(certices, 3));
-  var color = new THREE.Color(Math.random(), Math.random(), Math.random());
-  var cubeMaterial = new THREE.MeshBasicMaterial({
-    color: color,
-    transparent: true,
-    opacity: 0.7
-  }); //创建材质
-  // 根据几何体和材质创建物理
-  var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-  // 将几何体合体添加进场景
-  scene.add(cube);
-}
+var geometry = new THREE.BoxGeometry(2, 2, 2);
+var material = new THREE.MeshBasicMaterial({
+  color: 0x00ff00
+});
+var cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
 // 添加物体
 
 // 使用gui插件调整物体
@@ -44959,7 +44948,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60475" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58230" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

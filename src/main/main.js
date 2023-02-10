@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import * as dat from 'dat.gui'
 import { BufferAttribute } from 'three';
 // console.log(THREE)
-// 目标： 使用缓冲几何体创建多个三角形
+// 目标： 使用纹理
 // 1.创建场景
 const scene = new THREE.Scene();
 
@@ -17,21 +17,12 @@ const camear = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 camear.position.set(0, 0, 10)
 // 相机添加进场景
 scene.add(camear);
+const geometry = new THREE.BoxGeometry(2,2,2);
+const material = new THREE.MeshBasicMaterial( {color:0x00ff00} );
+const cube = new THREE.Mesh(geometry,material);
 
-for (let i = 0; i < 50; i++) {
-    const cubeGeometry = new THREE.BufferGeometry(); // 创建缓冲几何体
-    const certices = new Float32Array(9)
-    for (let j = 0; j < 9; j++) {
-        certices[j] = Math.random() * 6 - 3
-    }
-    cubeGeometry.setAttribute('position', new BufferAttribute(certices, 3));
-    const color= new THREE.Color(Math.random(),Math.random(),Math.random());
-    const cubeMaterial = new THREE.MeshBasicMaterial({ color:color,transparent:true,opacity:0.7 }); //创建材质
-    // 根据几何体和材质创建物理
-    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    // 将几何体合体添加进场景
-    scene.add(cube);
-}
+scene.add(cube);
+
 // 添加物体
 
 // 使用gui插件调整物体

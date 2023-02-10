@@ -42448,13 +42448,9 @@ function moveMoadl(c, list) {
   // num++;
 }
 
-var ds = [[{
-  attr: 'x',
-  pos: 2
-}, {
-  attr: 'y',
-  pos: 0
-}], [{
+var ds = [
+// [{attr:'x',pos:2},{attr:'y',pos:0}],
+[{
   attr: 'x',
   pos: 1
 }, {
@@ -42463,12 +42459,6 @@ var ds = [[{
 }], [{
   attr: 'x',
   pos: 1
-}, {
-  attr: 'y',
-  pos: 1
-}], [{
-  attr: 'x',
-  pos: 2
 }, {
   attr: 'y',
   pos: 1
@@ -42562,7 +42552,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60475" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58230" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

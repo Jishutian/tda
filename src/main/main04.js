@@ -86,10 +86,9 @@ function moveMoadl(c,list){
     // num++;
 }
 let ds =[
-    [{attr:'x',pos:2},{attr:'y',pos:0}],
+    // [{attr:'x',pos:2},{attr:'y',pos:0}],
     [{attr:'x',pos:1},{attr:'y',pos:0}],
     [{attr:'x',pos:1},{attr:'y',pos:1}],
-    [{attr:'x',pos:2},{attr:'y',pos:1}],
     [{attr:'x',pos:2},{attr:'y',pos:1}],
     [{attr:'x',pos:2},{attr:'z',pos:1}],
     [{attr:'x',pos:2},{attr:'y',pos:1},{attr:'z',pos:1}],
