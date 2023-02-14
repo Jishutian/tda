@@ -44858,7 +44858,7 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 // 导入GUI
 
 // console.log(THREE)
-// 目标： 使用纹理
+// 目标： 创建纹理
 // 1.创建场景
 var scene = new THREE.Scene();
 
@@ -44868,13 +44868,72 @@ var camear = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 camear.position.set(0, 0, 10);
 // 相机添加进场景
 scene.add(camear);
-var geometry = new THREE.BoxGeometry(2, 2, 2);
-var material = new THREE.MeshBasicMaterial({
-  color: 0x00ff00
-});
-var cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+// 创建纹理
+var textureLoad = new THREE.TextureLoader();
+// 创建贴图
+var doorColorTextture = textureLoad.load('/textures/door/color.jpg');
 
+// 像素级别纹理算法 值为常量，具体有什么值还是得看文档
+var doorColorTextture2 = textureLoad.load('/textures/minecraft.png');
+doorColorTextture2.minFilter = THREE.NearestMipmapNearestFilter;
+doorColorTextture2.magFilter = THREE.NearestFilter;
+// 创建透明纹理
+var doorColorTextture3 = textureLoad.load('/textures/door/alpha.jpg');
+// 导入环境切图
+var doorColorTextture4 = textureLoad.load('/textures/door/ambientOcclusion.jpg');
+// 导入置换贴图
+var doorColorTextture5 = textureLoad.load('/textures/door/height.jpg');
+// 导入粗糙度贴图
+var doorColorTextture6 = textureLoad.load('/textures/door/roughness.jpg');
+// 导入金属贴图
+var doorColorTextture7 = textureLoad.load('/textures/door/metalness.jpg');
+// 导入法线贴图
+var doorColorTextture8 = textureLoad.load('/textures/door/normal.jpg', function (e) {
+  console.log(222);
+});
+var loadImg = new THREE.LoadingManager();
+loadImg.onStart = function (e) {
+  console.log(111);
+};
+var cubeGeometry = new THREE.BoxGeometry(2, 2, 2, 200, 200, 200);
+var planeGeometry = new THREE.PlaneGeometry(2, 2, 200, 200);
+// 将贴图赋值给材质
+var cubeMaterial3 = new THREE.MeshStandardMaterial({
+  color: 'ffffff',
+  map: doorColorTextture,
+  alphaMap: doorColorTextture3,
+  transparent: true,
+  side: THREE.DoubleSide,
+  aoMap: doorColorTextture4,
+  aoMapIntensity: 1,
+  displacementMap: doorColorTextture5,
+  displacementScale: 0.15,
+  roughnessMap: doorColorTextture6,
+  roughness: 1,
+  metalnessMap: doorColorTextture7,
+  metalness: 1,
+  normalMap: doorColorTextture8
+}); //创建透明材质
+
+// 环境切图需要设置第二组UV
+planeGeometry.setAttribute('uv2', new THREE.BufferAttribute(planeGeometry.attributes.uv.array, 2));
+cubeGeometry.setAttribute('uv2', new THREE.BufferAttribute(cubeGeometry.attributes.uv.array, 2));
+
+// 根据几何体和材质创建物理
+var cube3 = new THREE.Mesh(cubeGeometry, cubeMaterial3);
+var cube4 = new THREE.Mesh(planeGeometry, cubeMaterial3);
+cube4.position.x = 2;
+scene.add(cube3);
+scene.add(cube4);
+
+// 添加灯光
+// 环境光
+// const light = new THREE.AmbientLight(0xffffff,0.5);
+// scene.add(light)
+// 平行光
+var direcLight = new THREE.DirectionalLight(0xffffff, 1);
+direcLight.position.set(10, 10, 10);
+scene.add(direcLight);
 // 添加物体
 
 // 使用gui插件调整物体
@@ -44900,29 +44959,7 @@ function render() {
   renderer.render(scene, camear);
   requestAnimationFrame(render);
 }
-// 双击让画布全屏展示
-document.addEventListener('dblclick', function () {
-  var fullScrenElment = document.fullscreenElement;
-  if (!fullScrenElment) {
-    // 进入全屏
-    renderer.domElement.requestFullscreen();
-  } else {
-    // 退出全屏
-    document.exitFullscreen();
-  }
-});
 render();
-// 监听屏幕变化，更新画面渲染
-window.addEventListener('resize', function () {
-  // 更新摄像头
-  camear.aspect = window.innerWidth / window.innerHeight;
-  // 更新相机矩阵投影
-  camear.updateProjectionMatrix();
-  // 更新渲染器
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  // 设置渲染器的像素比
-  renderer.setPixelRatio(window.devicePixelRatio);
-});
 },{"three":"../node_modules/three/build/three.module.js","three/examples/jsm/controls/OrbitControls":"../node_modules/three/examples/jsm/controls/OrbitControls.js","gsap":"../node_modules/gsap/index.js","dat.gui":"../node_modules/dat.gui/build/dat.gui.module.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -44948,7 +44985,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58230" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61361" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

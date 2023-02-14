@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,49 @@
     <title>Document</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
-    
+
 </body>
-<script src="./main//main.js" type="module"></script>
+<script src="./main/main.js" type="module"></script>
+<!-- <script>
+    var a = {
+        b: 11,
+        e: [1, 2, 3, 4],
+        f: { a1: 1, a2: 2 },
+        g: function () {
+            console.log('d')
+        },
+        h: undefined,
+        i: Symbol(1),
+        j: null
+    }
+    var b = deepClone(a);
+    b.a = 1
+    console.log(a)
+    console.log(b)
+    function deepClone(source) {
+        let clone = Object.assign({}, source);
+        Object.keys(clone).forEach(
+            key => (clone[key] = source[key]&&typeof source[key] === 'object' ? deepClone(source[key]) : source[key])
+        );
+        return clone;
+    }
+    // function deepClone(obj){
+    //     // return
+    //     const targetObj  = obj.constructor === Array ?[] :{};
+    //     for(let key in obj){
+    //         if(obj[key]&&typeof obj[key] ==='object'){
+    //             // targetObj[key]  = obj[key].constructor === Array ?[] :{};
+    //             console.log(obj[key])
+    //             targetObj[key] = deepClone(obj[key]);
+    //         }else{
+    //             targetObj[key] = obj[key]
+    //         }
+    //     }
+    //     return targetObj
+    // }
+
+</script> -->
+
 </html>
